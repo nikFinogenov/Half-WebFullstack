@@ -1,0 +1,52 @@
+.main{
+    font-family: Verdana, serif;
+    display: flex;
+    flex-wrap: wrap;
+    float: left;
+}
+div{
+    position: relative;
+    float: left;
+}
+.hero{
+    position: relative;
+    width: 270px;
+    height: 140px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 40px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+img{
+    height: 182px;
+    position: absolute;
+}
+p{
+    color: white;
+    text-align: right;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+}
+small{
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 9px;
+}
+
+#cap { background: linear-gradient(180deg, #4568DC, #B06AB3); }
+#cap img, #man img{
+    margin-top: -32px;
+}
+
+#man { background: linear-gradient(180deg, #e52d27, #b31217); }
+
+#woman { background: linear-gradient(90deg, #000, #61045F); }
+#woman img {
+    margin-top: -30px;
+}
+
+#spider { background: linear-gradient(180deg, #e52d27, #000); }
+#spider img {
+    margin-top: -10px;
+}

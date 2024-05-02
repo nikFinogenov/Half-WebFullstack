@@ -1,0 +1,43 @@
+img {
+    height: 120px;
+    width: 120px;
+    border-radius: 20px;
+}
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    text-align: center;
+}
+thead{
+    color: white;
+    background-color: black;
+}
+td {
+    border: 2px solid #e0e0e0;
+    padding: 10px;
+}
+#soul{
+    background-color: orange;
+}
+#time {
+    background-color: green;
+}
+#space { 
+    background-color: blueviolet;
+}
+#mind { 
+    background-color: yellow;
+}
+#reality { 
+    background-color: red;
+}
+#power { 
+    background-color: purple;
+}
+tfoot{
+    border: 1px solid #e0e0e0;
+}
+tfoot td{
+    padding: 7px 0;
+    border: none;
+}
