@@ -1,0 +1,12 @@
+img {
+    width: 100px;
+}
+
+.gauntlet {
+    width: 200px;
+}
+
+.gauntlet:hover~.main .row:nth-child(even) img:nth-child(even),
+.gauntlet:hover~.main .row:nth-child(odd) img:nth-child(odd) {
+    opacity: 0;
+}

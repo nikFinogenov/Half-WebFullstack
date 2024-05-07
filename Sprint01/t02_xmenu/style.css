@@ -1,0 +1,44 @@
+h1 {
+    text-align: center;
+    background-color: #333333;
+    color: white;
+    padding: 25px;
+}
+
+.categories {
+    display: flex;
+    justify-content: space-around;
+    background-color: gray;
+    color: black;
+}
+
+.category {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #b0b0b0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category:hover {
+    background-color: wheat;
+
+}
+
+.category:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+}
+
+.dropdown-menu li:hover {
+    background-color: wheat;
+}
