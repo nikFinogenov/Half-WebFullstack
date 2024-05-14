@@ -1,0 +1,51 @@
+.stones {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+    transform: rotate(45deg);
+    background-color: pink;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.stones[data-state="off"] {
+    border: 2px dashed black;
+}
+
+#red {
+    left: 5%;
+    top: 1%;
+    background-color: #D21F3C;
+}
+
+#green {
+    left: 5%;
+    top: 10%;
+    background-color: rgb(61, 145, 61);
+}
+
+#blue {
+    left: 5%;
+    top: 15%;
+    background-color: rgb(80, 80, 213);
+}
+
+#yellow {
+    left: 5%;
+    top: 20%;
+    background-color: rgb(240, 240, 104);
+}
+
+#pink {
+    left: 5%;
+    top: 25%;
+    background-color: rgb(252, 78, 107);
+}
+
+#purple {
+    left: 5%;
+    top: 30%;
+    background-color: rgb(97, 31, 97);
+}

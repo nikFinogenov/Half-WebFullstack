@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>t07</title>
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/script.js" defer></script>
+</head>
+
+<body>
+  <h1>Marvelous list</h1>
+  <div class="main">
+    <div class="links" data-trigger=".link" data-content=".movie">
+      <div class="link active" onclick="movie_click(this, 'lotr')">Lord of the Rings</div>
+      <div class="link" onclick="movie_click(this, 'himym')">How I met Your Mother</div>
+      <div class="link" onclick="movie_click(this, 'stw')">Star Wars</div>
+      <div class="link" onclick="movie_click(this, 'man')">What do men talk about?</div>
+    </div>
+    <div class="movies">
+      <div class="movie active" id="lotr">
+        <div class="desc">
+          <h2 class="title">Lord of the Rings Fellowship of the Ring</h2>
+          <h3 class="date">December 10, 2001</h3>
+          <ul class="actors">
+            <li class="actor">Elijah Wood</li>
+            <li class="actor">Ian McKellen</li>
+            <li class="actor">Liv Tyler</li>
+            <li class="actor">Viggo Mortensen</li>
+            <li class="actor">Sean Astin</li>
+            <li class="actor">Cate Blanchett</li>
+          </ul>
+          <div class="text">
+            <p>Trilogy of epic fantasy adventure films directed by Peter Jackson, based on the novel The Lord of the
+              Rings by British author J. R. R. Tolkien. The films are subtitled The Fellowship of the Ring (2001), The
+              Two Towers (2002), and The Return of the King (2003). </p>
+          </div>
+        </div>
+        <div class="image"><img src="assets/images/lotr.jpg" alt=""></div>
+      </div>
+      <div class="movie" id="himym">
+        <div class="desc">
+          <h2 class="title">How I met Your Mother</h2>
+          <h3 class="date">September 19, 2005</h3>
+          <ul class="actors">
+            <li class="actor">Josh Radnor</li>
+            <li class="actor">Jason Segel</li>
+            <li class="actor">Cobie Smulders</li>
+            <li class="actor">Neil Patrick Harris</li>
+            <li class="actor">Alyson Hannigan</li>
+          </ul>
+          <div class="text">
+            <p> American sitcom, created by Craig Thomas and Carter Bays for CBS. The series, which aired from September
+              19, 2005, to March 31, 2014, follows the main character, Ted Mosby, and his group of friends in New York
+              City's Manhattan. As a framing device, Ted, in 2030, recounts to his son, Luke, and daughter, Penny, the
+              events from September 2005 to May 2013 that led him to meet their mother.</p>
+          </div>
+        </div>
+        <div class="image"><img src="assets/images/himym.jpg" alt=""></div>
+      </div>
+      <div class="movie" id="stw">
+        <div class="desc">
+          <h2 class="title">Star Wars Phantom Menace</h2>
+          <h3 class="date">May 16, 1999</h3>
+          <ul class="actors">
+            <li class="actor">Liam Neeson</li>
+            <li class="actor">Ewan McGregor</li>
+            <li class="actor">Natalie Portman</li>
+            <li class="actor">Jake Lloyd</li>
+          </ul>
+          <div class="text">
+            <p>American epic space opera film written and directed by George Lucas. It stars Liam Neeson, Ewan McGregor,
+              Natalie Portman, Jake Lloyd, Ahmed Best, Ian McDiarmid, Anthony Daniels, Kenny Baker, Pernilla August and
+              Frank Oz. It is the fourth film in the Star Wars film series, the first film of the prequel trilogy and
+              the first chronological chapter of the "Skywalker Saga".</p>
+          </div>
+        </div>
+        <div class="image"><img src="assets/images/stw.jpg" alt=""></div>
+      </div>
+      <div class="movie" id="man">
+        <div class="desc">
+          <h2 class="title">What do men talk about?<< /h2>
+              <h3 class="date">March 4, 2010</h3>
+              <ul class="actors">
+                <li class="actor">Leonid Barats</li>
+                <li class="actor">"Rostislav Khait</li>
+                <li class="actor">Aleksandr Demidov</li>
+                <li class="actor">Kamil Larin</li>
+              </ul>
+              <div class="text">
+                <p>Comedy film of 2010 directed by Dmitry Dyachenko, based on the play “Conversations of Middle-Aged Men
+                  about Women, Cinema and Aluminum Forks” with the participation of actors from the comic theater
+                  “Quartet I”. The film premiered in Russia on March 4, 2010.</p>
+              </div>
+        </div>
+        <div class="image"><img src="assets/images/man.jpg" alt=""></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

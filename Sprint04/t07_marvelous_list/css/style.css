@@ -1,0 +1,94 @@
+h1 {
+    text-align: center;
+}
+
+.main {
+    margin: 20px;
+}
+
+.main {
+    display: flex;
+    background: rgb(231, 231, 231);
+    padding: 15px;
+}
+
+.links {
+    flex: 1 0 250px;
+    text-align: center;
+}
+
+.link {
+    padding: 10px 10px;
+    cursor: pointer;
+    border-left: 5px solid transparent;
+    transition: .3s;
+}
+
+.link:hover {
+    border-color: rgb(144, 196, 255);
+}
+
+.link.active {
+    border-color: red;
+    background-color: rgba(59, 59, 59, 0.3);
+}
+
+.movies {
+    border-left: 1px solid #fff;
+    padding-left: 40px;
+}
+
+.movie {
+    display: none;
+}
+
+.movie.active {
+    display: flex;
+}
+
+.image {
+    width: 270px;
+    height: 400px;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.title {
+    margin-bottom: 0;
+}
+
+.date {
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.actors {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.actor {
+    padding: 10px;
+    border-radius: 10px;
+    background: rgb(13, 123, 250);
+    color: #fff;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+.text {
+    padding-right: 20px;
+    padding-bottom: 10px;
+    line-height: 20px;
+}
