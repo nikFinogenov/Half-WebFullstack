@@ -1,0 +1,22 @@
+.prop {
+    margin-left: 50px;
+}
+
+#post {
+    border: 2px solid grey;
+    padding: 0 20px;
+    padding-bottom: 20px;
+    background: rgb(192, 192, 192);
+}
+
+#form {
+    padding: 20px;
+}
+
+.data {
+    margin-left: 30px;
+}
+
+textarea {
+    font-size: .9em;
+}
