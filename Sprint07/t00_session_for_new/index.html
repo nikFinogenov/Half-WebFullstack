@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Session</title>
+    <meta name="description" content="t00. Session foe new">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>t00</title>
+</head>
+<body>
+    <h1>Session for new</h1>
+    <form id="form"name="form" action="/count" method="POST">
+        <fieldset id="about">
+            <fieldset>
+                <legend>About HERO</legend><br>
+                <label>
+                    <span>Real Name</span>
+                    <input type="text" name="name" id="name" placeholder="Tell your name" size="18" autofocus required>
+                    <span>Current Alias</span>
+                    <input type="text" name="alias" id="alias" placeholder="Tell your e-mail" size="18" required>
+                    <span>Age</span>
+                    <input type="number" name="age" id="age" min="1" max="999" step="1" size="5" required><br><br>
+                    <span>About</span>
+                    <textarea name="description" id="description" cols="70" rows="5" maxlength="500" placeholder="Tell about yourself, max 500 symbols" required></textarea><br><br>
+                    <span>Photo:</span>
+                    <input type="file" name="photo" id="photo" required>
+                </label>
+                <br><br>
+            </fieldset>
+            <fieldset id="powers">
+                <legend>Powers</legend><br>
+                <label>
+                    <input type="checkbox" id="pw_str" name="powers">
+                    Strength
+                </label>
+                <label>
+                    <input type="checkbox" id="pw_spe" name="powers">
+                    Speed
+                </label>
+                <label>
+                    <input type="checkbox" id="pw_int" name="powers">
+                    Intelligence
+                </label>
+                <label>
+                    <input type="checkbox" id="pw_tele" name="powers">
+                    Teleportation
+                </label>
+                <label>
+                    <input type="checkbox" id="pw_im" name="powers">
+                    Immortal
+                </label>
+                <label>
+                    <input type="checkbox" id="pw_an" name="powers">
+                    Another
+                </label>
+                <br><br>
+                <label>
+                    Level of control:
+                    <input type="range" id="control" name="control" min="1" max="10" value="1">
+                </label>
+                <br><br>
+            </fieldset>
+            <fieldset id="publ">
+                <legend>Publicity</legend><br>
+                <label>
+                    <input type="radio" id="pub_unk" name="publicity" value="0">
+                    UNKNOWN
+                </label>
+                <label>
+                    <input type="radio" id="pub_ghost" name="publicity" value="1">
+                    LIKE A GHOST
+                </label>
+                <label>
+                    <input type="radio" id="pub_comic" name="publicity" value="2">
+                    I AM IN COMICS
+                </label>
+                <label>
+                    <input type="radio" id="pub_club" name="publicity" value="3">
+                    I HAVE FUN CLUB
+                </label>
+                <label>
+                    <input type="radio" id="pub_super" name="publicity" value="4">
+                    SUPERSTAR
+                </label>
+                <br><br>
+            </fieldset>
+            <br>
+            <button type="reset">CLEAR</button>
+            <button type="submit" id="submit">SEND</button>
+            <br><br>
+        </fieldset>
+    </form>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "t03_files",
+  "version": "1.0.0",
+  "description": "t03",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-session": "^1.18.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "NF",
+  "license": "ISC"
+}

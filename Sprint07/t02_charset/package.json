@@ -1,0 +1,18 @@
+{
+  "name": "t02_charset",
+  "version": "1.0.0",
+  "description": "t02",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "iconv-lite": "^0.6.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "NF",
+  "license": "ISC"
+}

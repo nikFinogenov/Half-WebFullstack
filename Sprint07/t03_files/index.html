@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Manager</title>
+    <style>
+        .section {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .file-list-section {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .current-file-section {
+            display: none;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function selectFile(filename) {
+            fetch(`/select-file?file=${filename}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('current-file').style.display = 'block';
+                    document.getElementById('file-name').innerText = `${data.name}`;
+                    document.getElementById('file-content-label').innerText = "Content:";
+                    document.getElementById('file-content').innerText = data.content;
+                    document.getElementById('delete-button').setAttribute('data-filename', data.name);
+                });
+        }
+
+        function deleteFile() {
+            const filename = document.getElementById('delete-button').getAttribute('data-filename');
+            fetch(`/delete-file?file=${filename}`, { method: 'DELETE' })
+                .then(() => {
+                    window.location.reload();
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <h1>File Manager</h1>
+
+    <div class="section">
+        <h2>Create File</h2>
+        <form action="/create-file" method="POST">
+            <label for="filename">File Name:</label>
+            <input type="text" id="filename" name="filename" required><br><br>
+            <label for="content">File Content:</label>
+            <textarea id="content" name="content" required></textarea><br><br>
+            <button type="submit">Create File</button>
+        </form>
+    </div>
+
+    <div class="file-list-section">
+        <h2>Files:</h2>
+        <div id="file-list">
+            <% filesHTML %>
+        </div>
+    </div>
+
+    <div id="current-file" class="current-file-section">
+        <h2>Selected File:</h2>
+        <h3 id="file-name"></h3>
+        <p id="file-content-label"></p>
+        <pre id="file-content"></pre>
+        <button id="delete-button" onclick="deleteFile()">Delete File</button>
+    </div>
+</body>
+
+</html>

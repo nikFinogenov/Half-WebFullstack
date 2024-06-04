@@ -1,0 +1,17 @@
+{
+  "name": "t04_data_to_xml",
+  "version": "1.0.0",
+  "description": "t04",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.19.2",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "NF",
+  "license": "ISC"
+}

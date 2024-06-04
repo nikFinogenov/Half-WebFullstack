@@ -1,0 +1,33 @@
+.wrapper {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box {
+    padding: 10px;
+    border: 1px solid red;
+    background-color: darkslategray;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.key {
+    color: lightskyblue;
+}
+
+.object {
+    color: white;
+}
+
+.data {
+    color: green
+}
+
+.box .box {
+    width: auto;
+}
+
+button {
+    cursor: pointer;
+}
