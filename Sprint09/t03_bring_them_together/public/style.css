@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+#remind {
+    display: block;
+    opacity: 0.5;
+    color: black;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: opacity 0.2s ease;
+    font-size: small;
+}
+#goBack {
+    display: block;
+    color: black;
+    font-size: medium;
+    text-decoration: none;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+#remind:hover, #goBack:hover {
+    opacity: 1; 
+}
+
+.info-message {
+    display: none;
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    text-align: center;
+    position: fixed;
+    top: 10px;
+    width: 100%;
+    transition: all .5 ease;
+}
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    margin-right: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+#logOut {
+    background-color: red;
+}
+#logOut:hover {
+    background-color: rgb(213, 55, 55);
+}
+
+button:hover {
+    background-color: #218838;
+}

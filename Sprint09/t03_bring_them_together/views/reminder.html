@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remind password</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="login.html" id="goBack">Go back</a>
+        <h2>Forgot password?</h2>
+        <form id="forgotForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+    <script>
+        const form = document.getElementById('forgotForm');
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            try {
+                const response = await fetch('/user/forgot', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.ok) {
+                    form.reset();
+                    localStorage.setItem('registrationInfo', 'Letter sent successfully!');
+                    window.location.href = "login.html";
+                    // setTimeout(() => alert('Letter sent!'), 0);
+                } else if (response.status === 400) {
+                    const data = await response.json();
+                    alert(data.error);
+                }
+                else {
+                    alert('Sending failed!');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred.');
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="infoMessage" class="info-message"></div>
+    <div>
+        <h2 id="userInfoBlock"></h2>
+        <button id="logOut">Log out</button>
+    </div>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const message = localStorage.getItem('loginInfo');
+            if (message) {
+                const infoMessageDiv = document.getElementById('infoMessage');
+                infoMessageDiv.textContent = message;
+                infoMessageDiv.style.display = 'block';
+
+                setTimeout(() => {
+                    infoMessageDiv.style.display = 'none';
+                }, 3000);
+
+                localStorage.removeItem('loginInfo');
+            }
+            let userInfo = document.getElementById("userInfoBlock");
+            if (localStorage.getItem('userName') != null) {
+                userInfo.textContent += `
+                        Hello ${localStorage.getItem('userName')}!
+                        Your status is ${localStorage.getItem('userStatus')}`
+            }
+            else {
+                userInfo.textContent += `How did you even get here??`
+            }
+        });
+        let logButton = document.getElementById("logOut");
+        logButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            localStorage.removeItem('userName');
+            localStorage.removeItem('userStatus');
+            localStorage.setItem("registrationInfo", "Logged out successfully!");
+            window.location.href = "login.html";
+        }) 
+    </script>
+</body>
+
+</html>

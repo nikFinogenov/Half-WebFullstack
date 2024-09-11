@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="infoMessage" class="info-message"></div>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="login">Login:</label>
+                <input type="text" id="login" name="login" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Log in</button>
+            <br><a href="reminder.html" id="remind">Forgot your password?</a>
+            <hr>
+            <a href="register.html">Don't have an account?</a>
+        </form>
+    </div>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const message = localStorage.getItem('registrationInfo');
+            if (message) {
+                const infoMessageDiv = document.getElementById('infoMessage');
+                infoMessageDiv.textContent = message;
+                infoMessageDiv.style.display = 'block';
+
+                setTimeout(() => {
+                    infoMessageDiv.style.display = 'none';
+                }, 3000);
+
+                localStorage.removeItem('registrationInfo');
+            }
+        });
+        const form = document.getElementById('loginForm');
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const login = document.getElementById('login').value;
+            const password = document.getElementById('password').value;
+
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            try {
+                const response = await fetch('/user/get', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.ok) {
+                    form.reset();
+                    localStorage.setItem('loginInfo', 'Logged in successfully!');
+                    const data = await response.json();
+                    localStorage.setItem('userName', data.user.full_name);
+                    localStorage.setItem('userStatus', data.user.status);
+                    window.location.href = "main.html";
+                    // setTimeout(() => alert('Login successful!'), 0);
+                } else if (response.status === 400) {
+                    const data = await response.json();
+                    alert(data.error);
+                }
+                else {
+                    alert('Login failed!');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred.');
+            }
+        });
+    </script>
+</body>
+
+</html>
