@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arena</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="custom-alert" class="alert hidden">
+        <span id="alert-message">Not enough money</span>
+    </div>
+    <div class="card-selection-screen" id="cardSelectionScreen">
+        <div class="screen-header">
+            <div class="timer" id="timer">00:30</div>
+            <div class="choose-hero" id="info-text">Choose Your Hero</div>
+        </div>
+        <div class="card-options">
+            <div class="card-option" data-card="card1">
+                <div class="card-opt-hp">
+                    <span class="card-opt-hp-text">5</span>
+                </div>
+                <div class="card-opt-attk">
+                    <span class="card-opt-attk-text">5</span>
+                </div>
+            </div>
+            <div class="card-option" data-card="card2">
+                <div class="card-opt-hp">
+                    <span class="card-opt-hp-text">5</span>
+                </div>
+                <div class="card-opt-attk">
+                    <span class="card-opt-attk-text">5</span>
+                </div>
+            </div>
+            <div class="card-option" data-card="card3">
+                <div class="card-opt-hp">
+                    <span class="card-opt-hp-text">5</span>
+                </div>
+                <div class="card-opt-attk">
+                    <span class="card-opt-attk-text">5</span>
+                </div>
+            </div>
+        </div>
+        <button class="random-button" id="randomButton">Random</button>
+    </div>
+
+    <img class="arena" src="arena.png" alt="collesium">
+    <div id="loading">
+        <p>Searching for other player</p>
+        <br>
+        <div class="loader"></div>
+    </div>
+    <div class="all">
+        <div class="toggle-panel" id="togglePanel">
+            <div class="toggle-arrow">→</div>
+        </div>
+
+        <div class="side-panel" id="sidePanel">
+            <button class="surrender-button">Surrender</button>
+
+            <div class="checkbox-container">
+                <label class="styled-checkbox">
+                    <input type="checkbox" id="checkbox1">
+                    <span>Show Mana in Numbers</span>
+                </label>
+                <label class="styled-checkbox2">
+                    <input type="checkbox" id="checkbox2">
+                    <span>Show Hp in Numbers</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="opponent-avatar-block">
+            <div class="avatar opponent-avatar"></div>
+            <div class="enemy-nickname" id="opNick">Opponent Nick</div>
+            <div class="opponent-hp">
+                <div class="opponent-hp-progress">
+                    <div class="opponent-hp-track">
+                    </div>
+                </div>
+                <div class="opponenthp"></div>
+            </div>
+        </div>
+
+        <div class="round-timer">
+            <button class="button" id="readyBuffs">Ready</button>
+            <div class="round-display" id="round-counter">Round: 1</div>
+
+            <div class="timer-display" id="round-time">00:30</div>
+        </div>
+
+        <div class="player-avatar-block">
+            <div class="player-hp">
+                <div class="hp"></div>
+                <div class="hp-progress">
+                    <div class="hp-track">
+                    </div>
+                </div>
+            </div>
+            <div class="nickname" id="playerNick">Player Nick</div>
+            <div class="avatar player-avatar"></div>
+        </div>
+
+        <div class="opponent-card">
+            <div class="opponentcard-large">
+                <div class="card-stats-hp" id="op-hp-box">
+                    <span id="op-card-number-hp">5</span>
+                </div>
+                <div class="card-stats-attk" id="op-attk-box">
+                    <span id="op-card-number-attk">5</span>
+                </div>
+            </div>
+            <div id="op-ab-log"></div>
+            <div class="icon-box" id="op-icon">
+                <img src="shield.png" alt="Icon" />
+            </div>
+        </div>
+
+        <div class="top-cards">
+            <div class="enemycard card-left"></div>
+            <div class="enemycard card-center"></div>
+            <div class="enemycard card-right"></div>
+        </div>
+
+        <div class="field-card">
+            <div class="card-large">
+                <div class="card-stats-hp" id="hp-box">
+                    <span id="card-number-hp">5</span>
+                </div>
+                <div class="card-stats-attk" id="attk-box">
+                    <span id="card-number-attk">5</span>
+                </div>
+                <div class="icon-box" id="pl-icon">
+                    <img src="shield.png" alt="Icon" />
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-cards">
+            <div class="card" data-card="buff1">Card 1</div>
+            <div class="card" data-card="buff2">Card 2</div>
+            <div class="card" data-card="buff3">Card 3</div>
+        </div>
+
+        <div class="manapool">
+            <div class="mana"></div>
+            <div class="progress">
+                <div class="track" id="manaTrack">
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-ability-cards">
+            <div class="ability-card" data-card="skill1">
+                <span class="mana-cost">8</span>
+                <span class="damage-value">10</span>
+            </div>
+            <div class="ability-card" data-card="skill2">
+                <span class="mana-cost">8</span>
+                <span class="damage-value">10</span>
+            </div>
+            <div class="ability-card" data-card="skill3">
+                <span class="mana-cost">8</span>
+                <span class="damage-value">10</span>
+            </div>
+        </div>
+        <div class="attack-button-block">
+            <button class="button" id="attackButton">
+                <img src="sword.png" alt="Attack" class="attack-image">
+            </button>
+        </div>
+
+
+        <div class="button-block">
+            <button class="button" id="actionButtonRoll">
+                <img src="dice.png" alt="Dice Roll" class="dice-image">
+                20
+            </button>
+            <div class="gold-display">
+                <img src="free-icon-hryvnia-9382219.png" alt="Dice Roll" class="gold">
+                <div class="gold-text" id="goldValue">1</div>
+            </div>
+        </div>
+
+        <div class="side-rect" id="sideRect">
+            <p>Your buffs</p>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io('http://localhost:3000');
+        const arena = document.querySelector('.all');
+        const load = document.querySelector('#loading');
+        const cardOptions = document.querySelectorAll('.card-option');
+        const cardBuffs = document.querySelectorAll('.card');
+        const cardSelectionScreen = document.getElementById('cardSelectionScreen');
+        const RollActionButton = document.getElementById('actionButtonRoll');
+        const buffBlock = document.querySelector('.bottom-cards');
+        const AbilityBlock = document.querySelector('.bottom-ability-cards');
+        const buttonGoldBlock = document.querySelector('.button-block');
+        const AttackbuttonBlock = document.querySelector('.attack-button-block');
+        const readyButton = document.getElementById('readyBuffs');
+        let baseHp = null;
+        let baseOppHp = null;
+        let heroCards = null;
+        let buffCards = null;
+        let shuffledBuffs = null;
+        let timerInterval = null;
+        let roundTimerInterval = null;
+        let hiddenCardsCount = 0;
+        let alertTimeout;
+        let roundCounter = 0;
+        let serverdata = null;
+        let areClicksDisabled = true;
+        let moneyAdded = false;
+
+        const randomButton = document.getElementById('randomButton');
+        const timerElement = document.getElementById('timer');
+        const roundTimeElement = document.getElementById('round-time');
+
+        let room_Id = null;
+        let timeLeft = 30;
+        let roundTimeLeft = 30;
+        let hasSelectedCard = false;
+
+        AbilityBlock.style.display = 'none';
+        AttackbuttonBlock.style.display = 'none';
+
+        function updateTimer() {
+            if (timeLeft > 0) {
+                timeLeft--;
+                const minutes = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+                const seconds = String(timeLeft % 60).padStart(2, '0');
+                timerElement.textContent = `${minutes}:${seconds}`;
+            } else {
+                clearInterval(timerInterval);
+                if (!hasSelectedCard) {
+                    selectRandomCard(cardOptions);
+                }
+            }
+        }
+
+        function updateRoundTimer() {
+            if (roundTimeLeft > 0) {
+                roundTimeLeft--;
+                const minutes = String(Math.floor(roundTimeLeft / 60)).padStart(2, '0');
+                const seconds = String(roundTimeLeft % 60).padStart(2, '0');
+                roundTimeElement.textContent = `${minutes}:${seconds}`;
+            } else {
+                clearInterval(roundTimerInterval);
+                readyButton.click();
+            }
+        }
+
+        function showAlert(message, duration) {
+            const alertBox = document.getElementById('custom-alert');
+            const alertMessage = document.getElementById('alert-message');
+
+            alertMessage.textContent = message;
+
+            alertBox.classList.remove('hidden');
+
+            clearTimeout(alertTimeout);
+            alertTimeout = setTimeout(function () {
+                alertBox.classList.add('hidden');
+            }, duration);
+        }
+
+        function stopAlert() {
+            clearTimeout(alertTimeout);
+
+            const alertBox = document.getElementById('custom-alert');
+            alertBox.classList.add('hidden');
+        }
+
+        function updateCardNumber(newHPNumber, newATKNumber) {
+            document.getElementById('card-number-hp').textContent = newHPNumber;
+            document.getElementById('card-number-attk').textContent = newATKNumber;
+            if (newHPNumber >= 10) {
+                document.getElementById('hp-box').style.marginLeft = "13px";
+            }
+            else document.getElementById('hp-box').style.marginLeft = "17px";
+            if (newATKNumber >= 10) {
+                document.getElementById('attk-box').style.marginRight = "13px";
+            }
+            else document.getElementById('attk-box').style.marginRight = "17px";
+        }
+
+        function updateOpCardNumber(newHPNumber, newATKNumber) {
+            document.getElementById('op-card-number-hp').textContent = newHPNumber;
+            document.getElementById('op-card-number-attk').textContent = newATKNumber;
+            if (newHPNumber >= 10) {
+                document.getElementById('op-hp-box').style.marginLeft = "13px";
+            }
+            else document.getElementById('op-hp-box').style.marginLeft = "17px";
+            if (newATKNumber >= 10) {
+                document.getElementById('op-attk-box').style.marginRight = "13px";
+            }
+            else document.getElementById('op-attk-box').style.marginRight = "17px";
+        }
+        function addBuffToBlock(buff) {
+            const sideRect = document.getElementById('sideRect');
+            const existingElements = sideRect.getElementsByTagName('p');
+            let found = false;
+
+            for (let p of existingElements) {
+                const [existingBuff, existingLevelText] = p.textContent.split(' ');
+                const existingLevel = Number(existingLevelText.replace('level', ''));
+
+                if (existingBuff === buff.bf_name) {
+                    found = true;
+
+                    if (existingLevel < 4) {
+                        const newLevel = existingLevel + 1;
+                        p.textContent = `${buff.bf_name} level${newLevel}`;
+                        p.classList.add('updated');
+                    }
+                    break;
+                }
+            }
+
+            if (!found) {
+                const p = document.createElement('p');
+                p.textContent = `${buff.bf_name} level1`;
+                p.classList.add('new');
+                sideRect.appendChild(p);
+            }
+
+            sideRect.scrollTop = sideRect.scrollHeight;
+        };
+        RollActionButton.addEventListener('click', function () {
+            if (Number(document.getElementById("goldValue").textContent) >= 20) {
+                RandomCard();
+                document.getElementById("goldValue").textContent = Number(document.getElementById("goldValue").textContent) - 20;
+            }
+            else {
+                showAlert('Not enough money', 500);
+            }
+        });
+
+        document.querySelector('.surrender-button').addEventListener('click', () => {
+            window.location.href = "menu.html";
+        });
+
+        function RandomCard() {
+            shuffledBuffs = shuffleArray(buffCards).slice(0, 3);
+
+            const cardBuffs = document.querySelectorAll('.card');
+
+            cardBuffs.forEach((cardBuff, index) => {
+                const buff = shuffledBuffs[index];
+
+                cardBuff.setAttribute('data-card', buff.bf_name);
+
+                cardBuff.textContent = buff.buff_name;
+
+                cardBuff.style.backgroundImage = `url(${buff.img})`;
+                cardBuff.style.backgroundSize = 'cover';
+                cardBuff.style.backgroundPosition = 'center';
+            });
+            cardBuffs.forEach(option => {
+                option.style.display = 'block';
+            });
+            hiddenCardsCount = 0;
+        }
+
+        function selectRandomCard(cards) {
+            const randomIndex = Math.floor(Math.random() * cards.length);
+            const randomCard = cards[randomIndex];
+            randomCard.click();
+        }
+
+        randomButton.addEventListener('click', function () {
+            selectRandomCard(cardOptions);
+        });
+        readyButton.addEventListener('click', () => {
+            if (readyButton.textContent === "Ready") {
+                showAlert("Waiting for second player", roundTimeLeft * 1000);
+                socket.emit('buffsSelected', room_Id, {
+                    playerId: localStorage.getItem('userId'),
+                    status: "ready"
+                });
+            }
+            else {
+                socket.emit('nextRound', room_Id, {
+                });
+            }
+        });
+
+        cardOptions.forEach(option => {
+            option.addEventListener('click', function () {
+                if (hasSelectedCard) return;
+                hasSelectedCard = true;
+
+                const selectedCard = option.getAttribute('data-card');
+                hideUnselectedCards(option);
+
+                document.getElementById('info-text').textContent = "Waiting for second player";
+
+                socket.emit('cardSelected', room_Id, {
+                    playerId: localStorage.getItem('userId'),
+                    card: selectedCard
+                });
+                randomButton.style.display = 'none';
+            });
+        });
+        cardBuffs.forEach((option, index) => {
+            option.addEventListener('click', function () {
+                const selectedCard = option.getAttribute('data-card');
+                if (Number(document.getElementById("goldValue").textContent >= Number(shuffledBuffs[index].price))) {
+                    socket.emit('buffSelected', room_Id, {
+                        playerId: localStorage.getItem('userId'),
+                        buff: selectedCard,
+                        price: shuffledBuffs[index].price,
+                        level: shuffledBuffs[index].level,
+                        rarity: shuffledBuffs[index].rarity
+                    });
+                    option.style.display = 'none';
+                    hiddenCardsCount++;
+                    document.getElementById("goldValue").textContent = Number(document.getElementById("goldValue").textContent) - Number(shuffledBuffs[index].price);
+                    addBuffToBlock(shuffledBuffs[index]);
+                }
+                else {
+                    showAlert('Not enough money', 500);
+                }
+                if (hiddenCardsCount === 3) {
+                    cardBuffs.forEach(option => {
+                        option.style.display = 'block';
+                    });
+                    hiddenCardsCount = 0;
+                    RandomCard();
+                }
+            });
+        });
+        function toggleClicks(isMyTurn) {
+            const cardAbilities = document.querySelectorAll('.ability-card');
+            cardAbilities.forEach(card => {
+                card.style.pointerEvents = isMyTurn ? 'none' : 'auto';
+            });
+        }
+        function hideUnselectedCards(selectedOption) {
+            cardOptions.forEach(option => {
+                if (option !== selectedOption) {
+                    option.style.visibility = 'hidden';
+                }
+            });
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function createBars(count, manaCount) {
+            const track = document.querySelector('.track');
+            const progress = document.querySelector('.progress');
+            const mana = document.querySelector('.mana');
+
+            mana.textContent = manaCount;
+
+            track.innerHTML = '';
+
+            const barWidth = 6;
+            const margin = 2;
+
+
+            const totalWidth = count * (barWidth + margin * 2);
+
+            progress.style.width = `${totalWidth + 4}px`;
+
+            for (let i = 0; i < count; i++) {
+                const bar = document.createElement('div');
+                bar.classList.add('bar');
+                track.appendChild(bar);
+            }
+        }
+
+        function createHpBars(count, hpCountOwn, hpCountOpp) {
+            const track = document.querySelector('.hp-track');
+            const trackOpp = document.querySelector('.opponent-hp-track');
+            const progress = document.querySelector('.hp-progress');
+            const progressOpp = document.querySelector('.opponent-hp-progress');
+            const hp = document.querySelector('.hp');
+            const hpOpp = document.querySelector('.opponenthp');
+
+            hp.textContent = hpCountOwn;
+            hpOpp.textContent = hpCountOpp;
+
+            track.innerHTML = '';
+            trackOpp.innerHTML = '';
+
+            const barWidth = 6;
+            const margin = 2;
+
+
+            const totalWidth = count * (barWidth + margin * 2);
+
+            progress.style.width = `${totalWidth + 4}px`;
+            progressOpp.style.width = `${totalWidth + 4}px`;
+            for (let i = 0; i < count; i++) {
+                const bar = document.createElement('div');
+                const barOpp = document.createElement('div');
+                bar.classList.add('hpbar');
+                barOpp.classList.add('hpoppbar');
+                track.appendChild(bar);
+                trackOpp.appendChild(barOpp);
+            }
+        }
+
+        function removeLastHpBars(loserId, n) {
+            const currentPlayerId = socket.id;
+
+            const track = document.querySelector('.hp-track');
+            const trackOpp = document.querySelector('.opponent-hp-track');
+
+            const bars = Array.from(track.querySelectorAll('.hpbar'));
+            const barsOpp = Array.from(trackOpp.querySelectorAll('.hpoppbar'));
+
+            if (loserId === currentPlayerId) {
+                const barsToRemove = Math.min(n, bars.length);
+                const playerHp = document.querySelector('.hp');
+                if (playerHp) playerHp.textContent = parseInt(playerHp.textContent) - 1;
+                for (let i = 0; i < barsToRemove; i++) {
+                    track.removeChild(bars[bars.length - 1 - i]);
+                }
+            } else {
+                const barsOppToRemove = Math.min(n, barsOpp.length);
+                const opponentHp = document.querySelector('.opponenthp');
+                if (opponentHp) opponentHp.textContent = parseInt(opponentHp.textContent) - 1;
+                for (let i = 0; i < barsOppToRemove; i++) {
+                    trackOpp.removeChild(barsOpp[barsOpp.length - 1 - i]);
+                }
+            }
+        }
+
+        function removeLastBars(n) {
+            const track = document.getElementById('manaTrack');
+            const bars = Array.from(track.querySelectorAll('.bar'));
+
+            const barsToRemove = Math.min(n, bars.length);
+
+            for (let i = 0; i < barsToRemove; i++) {
+                track.removeChild(bars[bars.length - 1 - i]);
+            }
+        }
+
+        function restoreMana(num) {
+            const track = document.getElementById('manaTrack');
+            const currentBars = track.querySelectorAll('.bar').length;
+            const maxBars = 5;
+            document.querySelector('.mana').textContent = maxBars;
+
+            const barsToRestore = Math.min(num, maxBars - currentBars);
+
+            for (let i = 0; i < barsToRestore; i++) {
+                const bar = document.createElement('div');
+                bar.classList.add('bar');
+                track.appendChild(bar);
+            }
+        }
+
+        socket.emit('userEmail', localStorage.getItem('userEmail'));
+        socket.emit('userId', localStorage.getItem('userId'));
+        socket.emit('userName', localStorage.getItem('userName'));
+        socket.emit('userAvatar', localStorage.getItem('userAvatar'));
+        socket.emit('searchGame');
+        socket.on('pause', () => {
+            localStorage.setItem('loginInfo', 'Game ended! Second player quit the session.');
+            window.location.href = "menu.html";
+        });
+        socket.on('startGame', ({ roomId, players }) => {
+            timerInterval = setInterval(updateTimer, 1000);
+            cardSelectionScreen.style.display = 'flex';
+            arena.style.display = 'none';
+            load.style.display = 'none';
+            room_Id = roomId;
+
+            const player = players.find(p => p.id === socket.id);
+            const opponent = players.find(p => p.id !== socket.id);
+            document.getElementById('playerNick').textContent = player.name;
+            document.getElementById('opNick').textContent = opponent.name;
+
+            document.querySelector('.avatar.player-avatar').style.backgroundImage = `url(${player.avatar})`;
+            document.querySelector('.avatar.player-avatar').style.backgroundSize = 'cover';
+            document.querySelector('.avatar.player-avatar').style.backgroundPosition = 'center';
+
+            document.querySelector('.avatar.opponent-avatar').style.backgroundImage = `url(${opponent.avatar})`;
+            document.querySelector('.avatar.opponent-avatar').style.backgroundSize = 'cover';
+            document.querySelector('.avatar.opponent-avatar').style.backgroundPosition = 'center';
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const togglePanel = document.getElementById('togglePanel');
+            const sidePanel = document.getElementById('sidePanel');
+            const arrow = document.querySelector('.toggle-arrow');
+
+            togglePanel.addEventListener('click', function () {
+                if (sidePanel.style.left === '0px') {
+                    sidePanel.style.left = '-250px';
+                    arrow.style.transform = 'rotate(0deg)';
+                } else {
+                    sidePanel.style.left = '0px';
+                    arrow.style.transform = 'rotate(180deg)';
+                }
+            });
+
+            document.addEventListener('click', function (event) {
+                const isClickInsidePanel = sidePanel.contains(event.target);
+                const isClickOnToggle = togglePanel.contains(event.target);
+
+                if (!isClickInsidePanel && !isClickOnToggle) {
+                    sidePanel.style.left = '-250px';
+                    arrow.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            const checkbox1 = document.getElementById('checkbox1');
+            const checkbox2 = document.getElementById('checkbox2');
+            const hp = document.querySelector('.hp');
+            const hpOpp = document.querySelector('.opponenthp');
+            const mana = document.querySelector('.mana');
+
+            checkbox1.addEventListener('change', function () {
+                if (checkbox1.checked) {
+                    mana.style.visibility = 'hidden';
+                } else {
+                    mana.style.visibility = 'visible';
+                }
+            });
+
+            checkbox2.addEventListener('change', function () {
+                if (checkbox2.checked) {
+                    hp.style.visibility = 'hidden';
+                    hpOpp.style.visibility = 'hidden';
+                } else {
+                    hp.style.visibility = 'visible';
+                    hpOpp.style.visibility = 'visible';
+                }
+            });
+
+            let hasSelectedCard = false;
+
+            fetch('cards.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Ошибка сети');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+
+                    heroCards = data.hero_cards;
+                    buffCards = data.buffs;
+
+                    const shuffledHeroes = shuffleArray(heroCards).slice(0, 3);
+                    shuffledBuffs = shuffleArray(buffCards).slice(0, 3);
+
+                    RandomCard();
+
+                    cardOptions.forEach((cardElement, index) => {
+                        const hero = shuffledHeroes[index];
+                        cardElement.setAttribute('data-card', hero.he_name);
+
+
+                        cardElement.style.backgroundImage = `url(${hero.img})`;
+                        cardElement.style.backgroundSize = 'cover';
+                        cardElement.style.backgroundPosition = 'center';
+
+                        const hpElement = cardElement.querySelector('.card-opt-hp-text');
+                        const attackElement = cardElement.querySelector('.card-opt-attk-text');
+
+                        hpElement.textContent = hero.hp;
+                        attackElement.textContent = hero.atk;
+
+                        const hpBox = cardElement.querySelector('.card-opt-hp');
+                        const attkBox = cardElement.querySelector('.card-opt-attk');
+
+                        if (hero.hp > 10) {
+                            hpBox.style.marginLeft = "23px";
+                        } else {
+                            hpBox.style.marginLeft = "";
+                        }
+
+                        if (hero.atk > 10) {
+                            attkBox.style.marginRight = "23px";
+                        } else {
+                            attkBox.style.marginRight = "";
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Ошибка загрузки JSON:', error);
+                });
+
+
+
+            socket.on('startRound', (data) => {
+                roundTimerInterval = setInterval(updateRoundTimer, 1000);
+                document.getElementById('round-counter').textContent = "Buff phase";
+
+                const currentPlayerId = socket.id;
+                serverdata = data;
+
+                const opponent = data.players.find(player => player.id !== currentPlayerId);
+                const currentPlayer = data.players.find(player => player.id === currentPlayerId);
+                createHpBars(30, 30, 30);
+                if (opponent) {
+                    const opponentHeroCard = heroCards.find(card => card.he_name === opponent.card);
+
+                    if (opponentHeroCard) {
+                        const opponentCardImg = opponentHeroCard.img;
+
+                        const opponentCardElement = document.querySelector('.opponentcard-large');
+                        if (opponentCardElement) {
+                            opponentCardElement.style.backgroundImage = `url(${opponentCardImg})`;
+                            opponentCardElement.style.backgroundSize = 'cover';
+                            opponentCardElement.style.backgroundPosition = 'center';
+                            updateOpCardNumber(opponentHeroCard.hp, opponentHeroCard.atk)
+                        }
+                    } else {
+                        console.log('Error: Opponent card not found in heroCards');
+                    }
+                } else {
+                    console.log('Error: Opponent not found in data.players');
+                }
+
+                if (currentPlayer) {
+
+                    const currentPlayerHeroCard = heroCards.find(card => card.he_name === currentPlayer.card);
+
+                    if (currentPlayerHeroCard) {
+                        const currentPlayerCardImg = currentPlayerHeroCard.img;
+                        createBars(parseInt(currentPlayerHeroCard.mana), currentPlayerHeroCard.mana);
+
+                        document.getElementById("goldValue").textContent = currentPlayerHeroCard.money;
+
+                        const currentPlayerCardElement = document.querySelector('.card-large');
+                        if (currentPlayerCardElement) {
+                            currentPlayerCardElement.style.backgroundImage = `url(${currentPlayerCardImg})`;
+                            currentPlayerCardElement.style.backgroundSize = 'cover';
+                            currentPlayerCardElement.style.backgroundPosition = 'center';
+                            updateCardNumber(currentPlayerHeroCard.hp, currentPlayerHeroCard.atk);
+                        }
+                    } else {
+                        console.log('Error: Your card not found in heroCards');
+                    }
+                } else {
+                    console.log('Error: Current player not found in data.players');
+                }
+
+                cardSelectionScreen.style.display = 'none';
+                arena.style.display = 'block';
+            });
+
+            const attackButton = document.getElementById('attackButton');
+
+            attackButton.addEventListener('click', () => {
+                const currentPlayerId = socket.id;
+
+                const opponent = serverdata.players.find(player => player.id !== currentPlayerId);
+                const currentPlayer = serverdata.players.find(player => player.id === currentPlayerId);
+
+                socket.emit('Attack', room_Id, {
+                    attackerId: currentPlayer,
+                    targetId: opponent,
+                    value: null
+                });
+                attackButton.disabled = true;
+            });
+
+            socket.on('AttackResult', (data) => {
+                const { attackerId, targetId, damage, attackerbasehp, targetbasehp } = data;
+                const currentPlayerId = socket.id;
+                const opponent = serverdata.players.find(player => player.id !== currentPlayerId);
+                const currentPlayer = serverdata.players.find(player => player.id === currentPlayerId);
+                let newhp;
+
+                if (currentPlayerId === targetId.id) {
+                    newhp = parseInt(document.getElementById('card-number-hp').textContent) - damage;
+                    if (newhp <= 0) {
+                        socket.emit('roundEnd', { roomId: room_Id, loserId: currentPlayerId });
+                    } else {
+                        updateCardNumber(newhp, document.getElementById('card-number-attk').textContent);
+                    }
+                    if (document.getElementById('pl-icon').style.display === 'flex') {
+                        document.getElementById('pl-icon').style.display = 'none';
+                    }
+                } else if (currentPlayerId === attackerId.id) {
+                    newhp = parseInt(document.getElementById('op-card-number-hp').textContent) - damage;
+                    if (newhp <= 0) {
+                        socket.emit('roundEnd', { roomId: room_Id, loserId: opponent.id });
+                    } else {
+                        updateOpCardNumber(newhp, document.getElementById('op-card-number-attk').textContent);
+                    }
+                    if (document.getElementById('op-icon').style.display === 'flex') socket.emit('DefenseEnd');
+                    if (document.getElementById('op-icon').style.display === 'flex') {
+                        document.getElementById('op-icon').style.display = 'none';
+                    }
+                }
+            });
+
+            socket.on('HealResult', (data) => {
+                const { HealId, heal } = data;
+                const currentPlayerId = socket.id;
+                const currentPlayer = serverdata.players.find(player => player.id === currentPlayerId);
+                let newhp;
+
+                if (currentPlayerId === HealId.id) {
+                    newhp = parseInt(document.getElementById('card-number-hp').textContent) + Number(heal);
+                    updateCardNumber(newhp, document.getElementById('card-number-attk').textContent);
+                } else if (currentPlayerId !== HealId.id) {
+                    newhp = parseInt(document.getElementById('op-card-number-hp').textContent) + Number(heal);
+                    updateOpCardNumber(newhp, document.getElementById('op-card-number-attk').textContent);
+                }
+
+            });
+
+
+            socket.on('DefenseResult', (data) => {
+                const { attackerId, targetId, damage } = data;
+                const currentPlayerId = socket.id;
+
+
+                if (currentPlayerId === targetId.id) {
+
+                    document.getElementById('op-icon').style.display = 'flex';
+                } else if (currentPlayerId === attackerId.id) {
+                    document.getElementById('pl-icon').style.display = 'flex';
+                }
+            });
+
+
+            socket.on('startTurn', (data) => {
+                socket.emit('GetBaseHp', room_Id, { playerId: socket.id });
+                socket.on('BaseHpResult', (data) => {
+                    data.players.forEach(player => {
+                        if (socket.id === player.id) {
+                            baseHp = player.hp;
+                        } else {
+                            baseOppHp = player.hp;
+                        }
+                    });
+                });
+
+                clearInterval(roundTimerInterval);
+                roundTimeLeft = 30;
+                stopAlert()
+                const currentPlayerId = socket.id;
+                const currentPlayer = data.players.find(player => player.id === currentPlayerId);
+                const currentPlayerHeroCard = heroCards.find(card => card.he_name === currentPlayer.card);
+                const cardAbilities = document.querySelectorAll('.ability-card');
+                buffBlock.style.display = 'none';
+                buttonGoldBlock.style.display = 'none';
+                AbilityBlock.style.display = 'flex';
+                AttackbuttonBlock.style.display = 'block';
+                cardAbilities.forEach((cardAb, index) => {
+                    cardAb.style.backgroundImage = `url(${currentPlayerHeroCard.abilities[index].img})`;
+                    cardAb.style.backgroundSize = 'cover';
+                    cardAb.style.backgroundPosition = 'center';
+                });
+                cardAbilities.forEach((cardAb, index) => {
+
+                    const manaCost = cardAb.querySelector('.mana-cost');
+                    const damageValue = cardAb.querySelector('.damage-value');
+
+                    manaCost.textContent = currentPlayerHeroCard.abilities[index].property[0].manacost;
+                    damageValue.textContent = currentPlayerHeroCard.abilities[index].property[0].dmg;
+
+                    cardAb.addEventListener('click', () => {
+                        if (Number(document.querySelector('.mana').textContent) >= Number(currentPlayerHeroCard.abilities[index].property[0].manacost)) {
+                            removeLastBars(Number(currentPlayerHeroCard.abilities[index].property[0].manacost));
+                            const selectedCard = cardAb.getAttribute('data-card');
+                            const currentPlayerId = socket.id;
+                            const opponent = serverdata.players.find(player => player.id !== currentPlayerId);
+                            const currentPlayer = serverdata.players.find(player => player.id === currentPlayerId);
+
+                            switch (currentPlayerHeroCard.abilities[index].type) {
+                                case 'attack':
+                                    socket.emit('Attack', room_Id, {
+                                        attackerId: currentPlayer,
+                                        targetId: opponent,
+                                        value: currentPlayerHeroCard.abilities[index].property[0].dmg
+                                    });
+                                    break;
+                                case 'heal':
+                                    socket.emit('Heal', room_Id, {
+                                        HealId: currentPlayer,
+                                        value: currentPlayerHeroCard.abilities[index].property[0].dmg
+                                    });
+                                    break;
+                                case 'defense':
+                                    socket.emit('Defense', room_Id, {
+                                        attackerId: currentPlayer,
+                                        targetId: opponent,
+                                        value: currentPlayerHeroCard.abilities[index].property[0].dmg
+                                    });
+                                    break;
+
+                                default:
+                                    break;
+                            }
+
+                            document.querySelector('.mana').textContent = Number(document.querySelector('.mana').textContent) - Number(currentPlayerHeroCard.abilities[index].property[0].manacost);
+                            document.getElementById('manaTrack')
+                        }
+
+                    });
+                });
+
+                roundCounter++;
+                readyButton.textContent = "End round";
+                document.getElementById('round-counter').textContent = `Round: ${roundCounter}`;
+                socket.emit('firstRound', room_Id);
+                roundTimerInterval = setInterval(updateRoundTimer, 1000)
+
+            });
+            socket.on('firstTurn', (turnId, roundNum) => {
+                if (roundNum != 1) {
+                    clearInterval(roundTimerInterval);
+                    roundTimeLeft = 30;
+                    roundTimerInterval = setInterval(updateRoundTimer, 1000)
+                }
+                document.getElementById('round-counter').textContent = `Round: ${roundNum}`
+                if (turnId === socket.id) {
+                    stopAlert();
+                    showAlert("Your turn", 2000);
+                    restoreMana(5);
+                    readyButton.disabled = false;
+                    attackButton.disabled = false;
+                    toggleClicks(false);
+                }
+                else {
+                    stopAlert();
+                    showAlert("Opponent turn", 30000);
+                    readyButton.disabled = true;
+                    attackButton.disabled = true;
+                    toggleClicks(true);
+                }
+            });
+
+            socket.on('roundResult', (data) => {
+                const { winnerId, loserId } = data;
+                readyButton.disabled = false;
+                attackButton.disabled = false;
+                toggleClicks(false);
+
+                updateOpCardNumber(baseOppHp, document.getElementById('op-card-number-attk').textContent);
+                updateCardNumber(baseHp, document.getElementById('card-number-attk').textContent);
+                if (socket.id === loserId) {
+                    showAlert('You lost round!', 2000);
+                    if (!moneyAdded) document.getElementById('goldValue').textContent = Number(document.getElementById('goldValue').textContent) + 50;
+                } else if (socket.id === winnerId) {
+                    showAlert('You won round!', 2000);
+                    if (!moneyAdded) document.getElementById('goldValue').textContent = Number(document.getElementById('goldValue').textContent) + 150;
+                }
+                moneyAdded = !moneyAdded;
+                removeLastHpBars(loserId, 1);
+                const playerHp = document.querySelector('.hp');
+                const opponentHp = document.querySelector('.opponenthp');
+                if (playerHp.textContent <= '0') {
+                    arena.style.display = 'none';
+                    showAlert('Вы проиграли игру ЛОХ!', 6000);
+                    setTimeout(() => {
+                        window.location.href = "menu.html";
+                    }, 6000);
+                } else if (opponentHp.textContent <= '0') {
+                    arena.style.display = 'none';
+                    showAlert('Вы выиграли игру, всеравно ЛОХ!', 6000);
+                    setTimeout(() => {
+                        window.location.href = "menu.html";
+                    }, 6000);
+                }
+
+                if (playerHp.textContent > '0' && opponentHp.textContent > '0') {
+                    if (socket.id === loserId) {
+                        showAlert('Вы проиграли раунд!', 2000);
+                    } else if (socket.id === winnerId) {
+                        showAlert('Вы выиграли раунд!', 2000);
+                    }
+                }
+
+            });
+
+            socket.on('startBuffPhase', (data) => {
+                clearInterval(roundTimerInterval);
+                roundTimeLeft = 30;
+                roundTimerInterval = setInterval(updateRoundTimer, 1000)
+                document.getElementById('round-counter').textContent = data.phase;
+
+                buffBlock.style.display = 'flex';
+                AbilityBlock.style.display = 'none';
+                AttackbuttonBlock.style.display = 'none';
+                buttonGoldBlock.style.display = 'flex';
+
+                readyButton.textContent = "Ready";
+
+            });
+            socket.on('connect', () => {
+                console.log('Connected to server with ID:', socket.id);
+            });
+
+            socket.on('connect_error', (error) => {
+                console.error('Connection error:', error);
+            });
+            socket.on('disconnect', function () {
+
+                window.location.href = "arena.html"
+
+            });
+        });
+    </script>
+</body>
+
+</html>

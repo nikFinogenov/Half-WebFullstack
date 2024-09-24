@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading</title>
+</head>
+<div id="userEmailDisplay"></div>
+<div id="userEmails"></div>
+
+<body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io('http://localhost:3000');
+    
+        socket.emit('userEmail', localStorage.getItem('userEmail'));
+        socket.emit('userId', localStorage.getItem('userId'));
+        socket.emit('userName', localStorage.getItem('userName')); 
+        socket.emit('userAvatar', localStorage.getItem('userAvatar'));
+    
+        document.addEventListener('DOMContentLoaded', (event) => {
+            event.preventDefault();
+            const userEmail = localStorage.getItem('userEmail');
+    
+            if (userEmail) {
+                socket.emit('searchGame');
+            } else {
+            }
+        });
+    
+        socket.on('startGame', ({ roomId, players }) => {});
+    
+        socket.on('roomFull', ({ message }) => {
+        });
+    </script>
+</body>
+
+</html>

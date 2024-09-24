@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MGF</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body class="login">
+    <div id="infoMessage" class="info-message"></div>
+    <div class="registration-container">
+        <div class="colosseum-header">
+            <h1>Welcome to the MGF</h1>
+        </div>
+
+        <form class="registration-form" id="loginForm">
+            <h2>Login</h2>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <button type="submit" class="btn-register">Enter the Arena</button>
+
+            <div class="login-micro">
+                <p>Don't have an account?</p>
+                <a href="reg.html" class="login-link">Register here</a>
+            </div>
+        </form>
+    </div>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const message = localStorage.getItem('registrationInfo');
+            if (message) {
+                const infoMessageDiv = document.getElementById('infoMessage');
+                infoMessageDiv.textContent = message;
+                infoMessageDiv.style.display = 'block';
+
+                setTimeout(() => {
+                    infoMessageDiv.style.display = 'none';
+                }, 3000);
+
+                localStorage.removeItem('registrationInfo');
+            }
+        });
+        const form = document.getElementById('loginForm');
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+
+                if (response.ok) {
+                    form.reset();
+                    localStorage.setItem('loginInfo', 'Logged in successfully!');
+                    const data = await response.json();
+                    localStorage.setItem('userName', data.user.name);
+                    localStorage.setItem('userEmail', data.user.email);
+                    localStorage.setItem('userAvatar', data.user.avatar);
+                    localStorage.setItem('userId', data.user.id);
+                    window.location.href = "menu.html";
+                } else if (response.status === 400) {
+                    const data = await response.json();
+                    alert(data.error);
+                }
+                else {
+                    alert('Login failed!');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred.');
+            }
+        });
+    </script>
+</body>
+
+</html>

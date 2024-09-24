@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MGF - Main Menu</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body class="menu">
+    <div id="infoMessage" class="info-message"></div>
+    <div class="menu-container">
+        <div class="avatar-container">
+            <img src="123.png" alt="Player Avatar" class="avatar" id="avatarimg">
+            <div class="dropdown-menu">
+                <a href="edit.html" class="menu-option">Edit Profile</a>
+                <a href="login.html" class="menu-option" id="logout">Logout</a>
+            </div>
+        </div>
+
+        <div class="menu-content">
+            <h1>Welcome to the Arena</h1>
+            <br><br>
+            <button class="start-game-btn" id="startGame">Start Game</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('startGame').addEventListener('click', (event) => {
+            event.preventDefault();
+            window.location.href = "arena.html";
+        });
+
+        document.getElementById('avatarimg').src = localStorage.getItem('userAvatar');
+        document.getElementById("logout").addEventListener('click', (event) => {
+            localStorage.clear();
+            localStorage.setItem('registrationInfo', 'Logged out successfully!');
+        });
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const message = localStorage.getItem('loginInfo');
+            if (message) {
+                const infoMessageDiv = document.getElementById('infoMessage');
+                infoMessageDiv.textContent = message;
+                infoMessageDiv.style.display = 'block';
+
+                setTimeout(() => {
+                    infoMessageDiv.style.display = 'none';
+                }, 3000);
+
+                localStorage.removeItem('loginInfo');
+            }
+        });
+        const avatar = document.querySelector('.avatar');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+        let timeoutId;
+
+        function hideMenu() {
+            timeoutId = setTimeout(() => {
+                dropdownMenu.classList.remove('show');
+            }, 300); 
+        }
+
+        avatar.addEventListener('click', () => {
+            if (!dropdownMenu.classList.contains('show')) {
+                dropdownMenu.classList.add('show');
+            } else {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+
+        dropdownMenu.addEventListener('mouseleave', () => {
+            hideMenu();
+        });
+        
+        dropdownMenu.addEventListener('mouseenter', () => {
+            clearTimeout(timeoutId);
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!avatar.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+
+    </script>
+</body>
+
+</html>

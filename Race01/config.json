@@ -1,0 +1,7 @@
+{
+	"host": "localhost",
+	"user": "rootuser",
+    "password": "password",
+	"database": "MGF"
+}
+      

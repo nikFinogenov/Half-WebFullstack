@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - MGF</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body class="register">
+    <div class="registration-container">
+        <div class="colosseum-header">
+            <h1>Welcome to the MGF</h1>
+            <p>Join the ranks of the great heroes!</p>
+        </div>
+
+        <form class="registration-form" id="registerForm">
+            <h2>Register Now</h2>
+
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password"
+                required>
+
+            <button type="submit" class="btn-register">Create</button>
+
+            <div class="login-micro">
+                <p>Already have an account?</p>
+                <a href="login.html" class="login-link">Login here</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('registerForm');
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            try {
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    form.reset();
+                    localStorage.setItem('registrationInfo', 'Registration successful!');
+                    window.location.href = "login.html"
+                } else if (response.status === 400) {
+                    alert("User with this email already exists");
+                } else {
+                    alert(result.error);
+                }
+            } catch (error) {
+                alert('An error occurred: ' + error.message);
+            }
+        });
+    </script>
+</body>
+
+</html>
